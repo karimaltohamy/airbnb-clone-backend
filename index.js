@@ -21,7 +21,7 @@ app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use(
   cors({
     credentials: true,
-    origin: "https://imaginative-blancmange-c74892.netlify.app",
+    origin: "https://airbnb-app-clone-1.netlify.app",
   })
 );
 
