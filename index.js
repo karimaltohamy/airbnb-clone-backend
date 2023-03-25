@@ -82,7 +82,7 @@ app.post("/login", async (req, res) => {
                 path: "/",
                 httpOnly: false,
               })
-              .json({ ...userDoc, token });
+              .json({ ...userDoc._doc, token });
           }
         );
       } else {
