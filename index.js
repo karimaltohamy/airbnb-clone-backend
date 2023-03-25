@@ -158,6 +158,8 @@ app.post("/place", (req, res) => {
     price,
   } = req.body;
 
+  if (!token) return res.status(400).send("invalid token");
+
   jwt.verify(token, jwtSecret, {}, async (err, user) => {
     if (err) throw err;
     const placeDoc = await Place.create({
@@ -179,6 +181,8 @@ app.post("/place", (req, res) => {
 
 app.get("/user-places", async (req, res) => {
   const { token } = req.cookies;
+
+  if (!token) return res.status(400).send("invalid token");
 
   jwt.verify(token, jwtSecret, {}, async (err, user) => {
     if (err) throw err;
@@ -214,6 +218,8 @@ app.put("/place", async (req, res) => {
     price,
   } = req.body;
 
+  if (!token) return res.status(400).send("invalid token");
+
   jwt.verify(token, jwtSecret, {}, async (err, user) => {
     if (err) throw err;
 
@@ -247,6 +253,8 @@ app.post("/booking", async (req, res) => {
   const { token } = req.cookies;
 
   try {
+    if (!token) return res.status(400).send("invalid token");
+
     jwt.verify(token, jwtSecret, {}, async (err, user) => {
       if (err) throw err;
       const bookingDoc = await Booking.create({
@@ -270,6 +278,8 @@ app.get("/bookings", async (req, res) => {
   const { token } = req.cookies;
 
   try {
+    if (!token) return res.status(400).send("invalid token");
+
     jwt.verify(token, jwtSecret, {}, async (err, user) => {
       if (err) throw err;
 
